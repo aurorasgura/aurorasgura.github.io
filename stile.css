@@ -1,0 +1,712 @@
+/* --- BASE & RESET --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Include padding e border nel calcolo della larghezza/altezza */
+    margin: 0;
+    /* Un reset completo inizia spesso qui per eliminare margini predefiniti */
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Comfortaa', sans-serif;
+    /* Imposta Comfortaa come font principale per il body */
+    color: #333;
+    /* Colore di default per la maggior parte del testo del body */
+    text-align: center;
+    /* Centra il testo a livello globale, poi lo annulliamo dove serve */
+    overflow-x: hidden;
+    /* Evita lo scroll orizzontale non desiderato */
+    min-height: 100vh;
+    /* Assicura che il body occupi almeno l'intera altezza della viewport */
+    display: flex;
+    /* Utile per i footer sticky o layout a colonna */
+    flex-direction: column;
+}
+
+/* --- SFONDO --- */
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    /* Copre interamente l'area */
+    background-attachment: fixed;
+    /* Il background rimane fisso durante lo scroll */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/** MENU BAR **/
+.menu-bar {
+    left: 10px;
+    text-align: left;
+}
+
+.menu-bar a {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    font-size: 1.5em;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-bar a:hover {
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    color: #64513d;
+}
+
+.menu-bar>ul>li {
+    margin: 25px;
+    padding: 5px;
+    display: inline-block;
+}
+
+/* --- CONTAINER CENTRALE --- */
+/* Questo container sarà il "guscio" principale per la maggior parte dei contenuti */
+.container {
+    max-width: 1280px;
+    /* Aumentata la larghezza massima per riempire più spazio su schermi grandi */
+    margin: 0 auto;
+    /* Centra il container nella pagina */
+    padding: 0 15px;
+    /* Padding laterale per evitare che i contenuti tocchino i bordi */
+    width: 100%;
+    /* Assicura che il container sia sempre largo il 100% fino a max-width */
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 0;
+    /* Aumentato il padding verticale per più spazio */
+    margin-bottom: 40px;
+    flex-grow: 1;
+    /* Permette alla sezione hero di espandere e spingere il footer verso il basso */
+}
+
+.hero-text {
+    text-align: left;
+    color: white;
+    /* Il testo qui deve essere bianco */
+}
+
+.hero-text h1 {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    /* Bebas Neue per i titoli */
+    font-size: 3.8rem;
+    /* Aumentato un po' per impatto */
+    margin-bottom: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    /* Migliora la leggibilità su più righe */
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    /* Leggermente più grande per il testo principale */
+    line-height: 1.6;
+}
+
+.hero-image {
+    text-align: center;
+    /* Allinea l'immagine a destra nel suo contenitore sulla versione desktop */
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    /* Nessun bordo arrotondato */
+    object-fit: contain;
+    /* Potrebbe essere 'contain' se non vuoi che tagli l'immagine, o 'cover' se vuoi che riempia l'area */
+    box-shadow: none;
+    /* Nessuna ombra */
+    display: block;
+    margin: auto;
+    /* Rimuove lo spazio extra sotto l'immagine se fosse inline */
+}
+
+
+/* --- SCROLL DOWN INDICATOR --- */
+.scroll-down {
+    position: absolute;
+    /* Rimanente in posizione sulla viewport */
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    /* Colore più visibile */
+    font-size: 0.9rem;
+    /* Leggermente più piccolo */
+    user-select: none;
+    cursor: default;
+    z-index: 1000;
+    animation: fadeAndBounce 3s ease-out infinite;
+    /* Nuova animazione combinata */
+    font-family: 'Comfortaa', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.arrow-wrapper {
+    position: relative;
+    width: 20px;
+    /* Aumentato leggermente la dimensione della freccia */
+    height: 20px;
+    margin: 8px auto 0;
+}
+
+.arrow-svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(255, 255, 255, 0.7);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.shine {
+    display: none;
+    /* Rimosso l'effetto shine dato che l'animazione bounce è più pulita */
+}
+
+/* Animazione combinata per scroll-down */
+@keyframes fadeAndBounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+        opacity: 0.7;
+    }
+}
+
+/* --- INTRO SUBHEADING --- */
+.intro-subheading {
+    margin: 60px auto 30px auto;
+    /* Più spazio sopra e sotto */
+    padding: 0 15px;
+    text-align: center;
+    color: white;
+    /* Il testo qui deve essere bianco */
+}
+
+.intro-subheading h2 {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    font-size: 2.8rem;
+    /* Dimensione più grande per risaltare */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.intro-subheading p {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 700px;
+    /* Limita la larghezza per una migliore leggibilità */
+    margin: 0 auto;
+}
+
+/* --- Instagram Embeds: Griglia Fissa a Tre (Correzioni) --- */
+.instagram-embeds-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Ora si adatta automaticamente */
+    gap: 20px;
+    justify-content: center;
+    max-width: 1400px;
+    /* Aumentata per riempire più spazio */
+    margin: 0 auto 80px auto;
+    padding: 0 15px;
+    width: 100%;
+}
+
+.instagram-embeds-wrapper blockquote.instagram-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+    /* max-width: 320px !important; Questo verrà gestito in parte dal minmax ma lo teniamo per mobile */
+    margin: 0 auto !important;
+    height: auto;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.instagram-embeds-wrapper blockquote.instagram-media iframe {
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    display: block;
+    border-radius: 10px;
+}
+
+/* --- OTHER WORK SECTION --- */
+.other-work {
+    margin: 60px auto 80px auto;
+    /* Margini simili alla sezione Instagram per coerenza */
+    padding: 0 15px;
+    /* Padding laterale */
+    text-align: center;
+    /* Centra il testo */
+    color: white;
+    /* Mantieni il colore bianco per l'intera sezione, incluso l'h3 */
+}
+
+.other-work h3 {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    /* Stesso font dei titoli principali */
+    font-size: 2.2rem;
+    /* Dimensione del font leggermente più piccola dell'h2 ma visibile */
+    margin-bottom: 30px;
+    /* Spazio sotto il titolo */
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+/* --- Video Grid for Other Work Section --- */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Si adatta automaticamente */
+    gap: 20px;
+    /* Spazio tra i video */
+    max-width: 1400px;
+    /* Aumentata per riempire più spazio */
+    margin: 0 auto 40px auto;
+    /* Centra la griglia e aggiunge spazio sotto */
+    padding: 0 15px;
+    /* Padding laterale */
+}
+
+.video-wrapper {
+    position: relative;
+    /* Per posizionare correttamente il padding-top */
+    width: 100%;
+    padding-top: 177.77%;
+    /* 16 / 9 * 100 = 177.77% per 9:16 aspect ratio (altezza/larghezza * 100) */
+    overflow: hidden;
+    /* Nasconde ciò che esce dal contenitore se l'aspect ratio non è esatto */
+    border-radius: 10px;
+    /* Bordi arrotondati come gli embed di Instagram */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Ombra leggera */
+    background-color: #000;
+    /* Sfondo nero per i video */
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Assicura che il video riempia il contenitore, tagliando se necessario */
+    border-radius: 10px;
+    /* Assicura che anche il video abbia i bordi arrotondati */
+    display: block;
+    /* Rimuove eventuali spazi extra */
+}
+
+/* --- Image Grid for Other Work Section (NEW) --- */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Si adatta automaticamente */
+    gap: 20px;
+    /* Spazio tra le immagini */
+    max-width: 1400px;
+    /* Aumentata per riempire più spazio */
+    margin: 0 auto 80px auto;
+    /* Centra la griglia e aggiunge spazio sotto */
+    padding: 0 15px;
+    /* Padding laterale */
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 140%;
+    /* 7 / 5 * 100 = 140% per 5:7 aspect ratio (altezza/larghezza * 100) */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #000;
+    /* Sfondo nero per le immagini */
+}
+
+.image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Assicura che l'immagine riempia il contenitore, tagliando se necessario */
+    border-radius: 10px;
+    display: block;
+}
+
+/* --- Stile per la nuova sezione "Through my lense" --- */
+.through-my-lense {
+    margin: 60px auto 80px auto;
+    padding: 0 15px;
+    text-align: center;
+    color: white;
+    /* Mantieni il colore bianco per l'intera sezione, incluso l'h3 */
+}
+
+.through-my-lense h3 {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+/* --- Sezione Galleria Immagini 3x3 --- */
+.image-gallery-3x3 {
+    margin: 80px auto;
+    /* Spazio sopra e sotto la galleria */
+    padding: 0 15px;
+    text-align: center;
+    color: white;
+    /* Il testo qui deve essere bianco (es. il titolo h3) */
+}
+
+.image-gallery-3x3 h3 {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    /* Spazio sotto il titolo */
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: white !important;
+    /* Forziamo il bianco per il titolo della galleria */
+}
+
+.grid-3x3-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* FORZA 3 COLONNE SU DESKTOP */
+    gap: 20px;
+    /* Spazio tra le immagini */
+    max-width: 1400px;
+    /* Aumentata per riempire più spazio */
+    margin: 0 auto;
+    /* Centra la griglia */
+    padding: 0 15px;
+    /* Padding per schermi più piccoli */
+}
+
+.image-item {
+    position: relative;
+    width: 100%;
+    padding-top: 125%;
+    /* Rapporto 4:5 (altezza / larghezza * 100) -> (5/4)*100 = 125% */
+    overflow: hidden;
+    /* Nasconde l'eccesso se l'immagine non è esattamente 4:5 */
+    border-radius: 15px;
+    /* Bordi arrotondati, puoi aumentare o diminuire */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Ombra più pronunciata per dare profondità */
+    background-color: #1a1a1a;
+    /* Colore di sfondo di fallback se l'immagine non carica */
+}
+
+.image-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Assicura che l'immagine copra l'area, tagliando se necessario */
+    border-radius: 15px;
+    /* Bordi arrotondati anche per l'immagine */
+    display: block;
+    /* Rimuove lo spazio extra sotto l'immagine */
+}
+
+/* --- Sezione Galleria Video 3x1 (NEW) --- */
+.video-gallery-3x1 {
+    margin: 80px auto;
+    /* Spazio sopra e sotto la galleria */
+    padding: 0 15px;
+    text-align: center;
+    color: white;
+    /* Il testo qui deve essere bianco (es. il titolo h3) */
+}
+
+.video-gallery-3x1 h3 {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    /* Spazio sotto il titolo */
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: white !important;
+    /* Forziamo il bianco per il titolo della galleria */
+}
+
+.grid-3x1-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* FORZA 3 COLONNE SU DESKTOP */
+    gap: 20px;
+    /* Spazio tra i video */
+    max-width: 1400px;
+    /* Aumentata per riempire più spazio */
+    margin: 0 auto;
+    /* Centra la griglia */
+    padding: 0 15px;
+    /* Padding per schermi più piccoli */
+}
+
+.video-item {
+    position: relative;
+    width: 100%;
+    padding-top: 125%;
+    /* Rapporto 4:5 (altezza / larghezza * 100) -> (5/4)*100 = 125% */
+    overflow: hidden;
+    /* Nasconde l'eccesso se il video non è esattamente 4:5 */
+    border-radius: 15px;
+    /* Bordi arrotondati, puoi aumentare o diminuire */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Ombra più pronunciata per dare profondità */
+    background-color: #1a1a1a;
+    /* Colore di sfondo di fallback se il video non carica */
+}
+
+.video-item video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Assicura che il video copra l'area, tagliando se necessario */
+    border-radius: 15px;
+    /* Bordi arrotondati anche per il video */
+    display: block;
+    /* Rimuove lo spazio extra sotto il video */
+}
+
+/* --- SOCIAL LINKS SECTION --- */
+.social-links {
+    /* Margini ridotti per avvicinarla al contenuto precedente e al footer. */
+    margin: 30px auto 30px auto;
+    padding: 0 15px;
+    text-align: center;
+    /* Rimuoviamo il colore generale da qui, lo metteremo solo per l'h3 */
+}
+
+.social-links h3 {
+    font-family: 'Bebas Neue', cursive, sans-serif;
+    font-size: 1.8rem;
+    /* Dimensione del titolo più compatta */
+    margin-bottom: 15px;
+    /* Spazio ridotto sotto il titolo */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: white;
+    /* TESTO BIANCO PER "Contact me" */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* Spazio ridotto tra le icone */
+}
+
+.social-icons a {
+    display: flex;
+    /* Cambiato a flex per centrare meglio l'immagine nel riquadro */
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    /* Dimensione fissa del riquadro */
+    height: 50px;
+    /* Dimensione fissa del riquadro */
+    border: 2px solid white;
+    /* BORDO BIANCO */
+    border-radius: 10px;
+    /* BORDI ARROTONDATI (puoi regolare il valore) */
+    background-color: transparent;
+    /* SFONDO TRASPARENTE */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Transizione anche per il background */
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px) scale(1.05);
+    /* Effetto hover leggermente più pronunciato */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Leggero sfondo bianco semitrasparente all'hover */
+}
+
+.social-icons svg {
+    width: 35px;
+    /* DIMENSIONE DELL'ICONA ALL'INTERNO DEL RIQUADRO */
+    height: 35px;
+    /* DIMENSIONE DELL'ICONA ALL'INTERNO DEL RIQUADRO */
+    object-fit: contain;
+    /* Utilizziamo 'contain' per mantenere le proporzioni e non tagliare */
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+    fill: white;
+}
+
+@media (min-width: 960px) {
+    .hero {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- Responsive per la sezione Social --- */
+@media (max-width: 959px) {
+    .social-links h3 {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+
+    .social-icons {
+        gap: 12px;
+    }
+
+    .social-icons a {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+        /* Meno arrotondati su tablet */
+    }
+
+    .social-icons img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .hero-image img {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-links {
+        margin: 20px auto 20px auto;
+        /* Ulteriore riduzione dei margini su mobile */
+    }
+
+    .social-links h3 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .social-icons {
+        gap: 10px;
+    }
+
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        border-radius: 7px;
+    }
+
+    .social-icons img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .grid-3x3-wrapper {
+        grid-template-columns: 1fr;
+        /* 1 colonna su mobile */
+        gap: 15px;
+        max-width: 320px;
+        /* Limita la larghezza su mobile per un aspetto migliore */
+        margin: 0 auto;
+        /* Centra la griglia su mobile */
+    }
+
+    .grid-3x1-wrapper {
+        grid-template-columns: 1fr;
+        /* 1 colonna su mobile */
+        gap: 15px;
+        max-width: 320px;
+        /* Limita la larghezza su mobile per un aspetto migliore */
+        margin: 0 auto;
+        /* Centra la griglia su mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .social-links h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .social-icons {
+        gap: 8px;
+    }
+
+    .social-icons a {
+        width: 38px;
+        height: 38px;
+        border-radius: 6px;
+    }
+
+    .social-icons img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Smallest Mobile Devices (fino a 480px) */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+
+    .intro-subheading h2 {
+        font-size: 1.8rem;
+    }
+
+    .other-work h3 {
+        font-size: 1.5rem;
+    }
+
+    .through-my-lense h3 {
+        font-size: 1.5rem;
+    }
+
+    .image-gallery-3x3 h3 {
+        font-size: 1.5rem;
+    }
+
+    .video-gallery-3x1 h3 {
+        font-size: 1.5rem;
+    }
+}
